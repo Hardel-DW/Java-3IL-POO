@@ -1,4 +1,4 @@
-package com.company.creature.skill.modifier;
+package com.company.creature.stat;
 
 public enum Properties {
     VALUE,

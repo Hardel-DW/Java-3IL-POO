@@ -7,6 +7,7 @@ public abstract class Stat {
     protected int maxValue = Integer.MAX_VALUE;
     protected int minValue = Integer.MIN_VALUE;
 
+    // Constructor
     protected Stat(String name, int value, int maxValue, int minValue) {
         this(name, value, maxValue);
         this.minValue = minValue;
@@ -23,7 +24,33 @@ public abstract class Stat {
         this.initialValue = value;
     }
 
-    public void setInitialValue() {
+    // Method
+    public void addValue(Properties properties, int value) {
+        switch (properties) {
+            case VALUE -> this.addValue(value);
+            case MAX_VALUE -> this.maxValue += value;
+            case MIN_VALUE -> this.minValue += value;
+        }
+    }
+
+    public void subValue(Properties properties, int value) {
+        switch (properties) {
+            case VALUE -> this.subValue(value);
+            case MAX_VALUE -> this.maxValue -= value;
+            case MIN_VALUE -> this.minValue -= value;
+        }
+    }
+
+    public void setValue(Properties properties, int value) {
+        switch (properties) {
+            case VALUE -> this.setValue(value);
+            case MAX_VALUE -> this.setMaxValue(value);
+            case MIN_VALUE -> this.setMinValue(value);
+        }
+    }
+
+    // Set all values to initial values
+    public void redefineOriginalValue() {
         this.value = this.initialValue;
     }
 
@@ -39,6 +66,22 @@ public abstract class Stat {
         this.minValue = minValue;
     }
 
+    // Operators
+    private void addValue(int value) {
+        this.value += value;
+        if (this.value > this.maxValue) {
+            this.value = this.maxValue;
+        }
+    }
+
+    private void subValue(int value) {
+        this.value -= value;
+        if (this.value < this.minValue) {
+            this.value = this.minValue;
+        }
+    }
+
+    // Getters and setters
     public String getName() {
         return name;
     }

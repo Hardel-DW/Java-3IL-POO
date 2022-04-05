@@ -12,11 +12,6 @@ public class Dragon extends Creature {
     }
 
     @Override
-    public boolean isAlive() {
-        return lifePoint.getValue() > 0;
-    }
-
-    @Override
     public String toString() {
         return getName() + " is a dragon with " + lifePoint.getValue() + " life points";
     }

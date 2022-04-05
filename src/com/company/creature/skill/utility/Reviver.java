@@ -3,14 +3,15 @@ package com.company.creature.skill.utility;
 import com.company.creature.Creature;
 import com.company.creature.skill.Skill;
 
-public class Reviver extends Skill<boolean> {
+public class Reviver extends Skill {
 
-    public Reviver(String name, boolean value) {
-        super("Reviver", true);
+    public Reviver(String name, int cost) {
+        super("Reviver", 55);
     }
 
     @Override
-    public void use(Creature creature) {
-        creature.setCanRevive(value);
+    public void useSkill(Creature creature, Creature target) {
+        super.useSkill(creature, target);
+        target.setCanRevive(true);
     }
 }

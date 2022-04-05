@@ -2,15 +2,24 @@ package com.company.creature.skill;
 
 import com.company.creature.Creature;
 
-public abstract class Skill<T> {
+public abstract class Skill {
     protected String name;
-    protected T value;
+    protected int manaCost;
+    protected Creature owner;
+    protected Creature target;
 
-    public abstract void use(Creature creature);
+    public void useSkill(Creature creature, Creature target) {
+        this.owner = creature;
+        this.target = target;
 
-    public Skill(String name, T value) {
+        if (creature.getMana().getValue() >= manaCost) {
+            creature.getMana().setValue(creature.getMana().getValue() - manaCost);
+        }
+    }
+
+    public Skill(String name, int manaCost) {
         this.name = name;
-        this.value = value;
+        this.manaCost = manaCost;
     }
 
     public String getName() {
@@ -21,16 +30,16 @@ public abstract class Skill<T> {
         this.name = name;
     }
 
-    public T getValue() {
-        return value;
+    public int getManaCost() {
+        return manaCost;
     }
 
-    public void setValue(T value) {
-        this.value = value;
+    public void setManaCost(int manaCost) {
+        this.manaCost = manaCost;
     }
 
     @Override
     public String toString() {
-        return name + ": " + value;
+        return name;
     }
 }

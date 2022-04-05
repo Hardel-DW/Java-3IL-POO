@@ -1,10 +1,7 @@
 package com.company.creature;
 
 import com.company.creature.skill.Skill;
-import com.company.creature.stat.Armor;
-import com.company.creature.stat.Damage;
-import com.company.creature.stat.LifePoint;
-import com.company.creature.stat.Stat;
+import com.company.creature.stat.*;
 
 import java.util.List;
 
@@ -13,7 +10,8 @@ public abstract class Creature {
     protected LifePoint lifePoint;
     protected Damage damage;
     protected Armor armor;
-    protected List<Skill<?>> skills;
+    protected Mana mana;
+    protected List<Skill> skills;
     protected boolean canRevive = false;
 
     // Constructors
@@ -31,16 +29,8 @@ public abstract class Creature {
     public void sufferDamage(int damage) {
         int realDamage = damage - armor.getValue();
 
-        if (realDamage > 0) {
-            int newLifePoint = lifePoint.getValue() - realDamage;
-
-            if (newLifePoint < 0)
-                lifePoint.setValue(0);
-            else
-                lifePoint.setValue(lifePoint.getValue() - realDamage);
-
-        } else {
-            System.out.println("No damage");
+        if (realDamage > 0)  {
+            lifePoint.subValue(Properties.VALUE, realDamage);
         }
 
         if (lifePoint.getValue() <= 0 && canRevive) {
@@ -50,35 +40,42 @@ public abstract class Creature {
     }
 
     public void heal(int healValue) {
-        if ((lifePoint.getValue() + healValue) > lifePoint.getMaxValue()) {
-            lifePoint.setValue(lifePoint.getMaxValue() + healValue);
-        } else {
-            lifePoint.setValue(lifePoint.getValue());
-        }
+        lifePoint.addValue(Properties.VALUE, healValue);
     }
 
     public boolean isAlive() {
         return lifePoint.getValue() > 0 || canRevive;
     }
 
+    public void useSkill(int skillIndex) {
+        useSkill(skillIndex, this);
+    }
+
+    public void useSkill(int skillIndex, Creature target) {
+        if (skillIndex >= 0 && skillIndex < skills.size()) {
+            Skill skill = skills.get(skillIndex);
+            skill.useSkill(this, target);
+        }
+    }
+
     // Skills
-    public List<Skill<?>> getSkills() {
+    public List<Skill> getSkills() {
         return skills;
     }
 
-    public void setSkills(List<Skill<?>> skills) {
+    public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
 
-    public void addSkill(Skill<?> skill) {
+    public void addSkill(Skill   skill) {
         skills.add(skill);
     }
 
-    public void removeSkill(Skill<?> skill) {
+    public void removeSkill(Skill skill) {
         skills.remove(skill);
     }
 
-    public Skill<?> getSkill(int index) {
+    public Skill getSkill(int index) {
         return skills.get(index);
     }
 
@@ -109,5 +106,9 @@ public abstract class Creature {
 
     public Stat getArmor() {
         return armor;
+    }
+
+    public Stat getMana() {
+        return mana;
     }
 }
