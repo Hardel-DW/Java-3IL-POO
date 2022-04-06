@@ -1,9 +1,9 @@
-package com.company.creature.skill.damage;
+package com.company.spell.damage;
 
 import com.company.creature.Creature;
-import com.company.creature.skill.Skill;
+import com.company.spell.Spell;
 
-public class Fireball extends Skill {
+public class Fireball extends Spell {
     public Fireball(String name) {
         super("Fireball", 20);
     }

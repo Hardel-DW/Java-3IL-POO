@@ -1,10 +1,10 @@
-package com.company.creature.skill.modifier;
+package com.company.spell.modifier;
 
 import com.company.creature.Creature;
-import com.company.creature.skill.Skill;
+import com.company.spell.Spell;
 import com.company.creature.stat.Properties;
 
-public class MegaArmor extends Skill {
+public class MegaArmor extends Spell {
     public MegaArmor(String name) {
         super("Mega armor", 20);
     }

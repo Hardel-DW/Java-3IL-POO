@@ -1,9 +1,9 @@
-package com.company.creature.skill.heal;
+package com.company.spell.heal;
 
 import com.company.creature.Creature;
-import com.company.creature.skill.Skill;
+import com.company.spell.Spell;
 
-public class MegaHeal extends Skill {
+public class MegaHeal extends Spell {
     public MegaHeal(String name) {
         super("Healing", 20);
     }

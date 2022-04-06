@@ -1,10 +1,10 @@
-package com.company.creature.skill.modifier;
+package com.company.spell.modifier;
 
 import com.company.creature.Creature;
-import com.company.creature.skill.Skill;
+import com.company.spell.Spell;
 import com.company.creature.stat.Properties;
 
-public class DecreaseDamage extends Skill {
+public class DecreaseDamage extends Spell {
     public DecreaseDamage(String name) {
         super("Decrease Damage", 20);
     }

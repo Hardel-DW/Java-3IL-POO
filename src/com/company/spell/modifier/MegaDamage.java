@@ -1,10 +1,9 @@
-package com.company.creature.skill.modifier;
+package com.company.spell.modifier;
 
 import com.company.creature.Creature;
-import com.company.creature.skill.Skill;
-import com.company.creature.stat.Properties;
+import com.company.spell.Spell;
 
-public class MegaDamage extends Skill {
+public class MegaDamage extends Spell {
     public MegaDamage(String name) {
         super("Mega damage", 20);
     }

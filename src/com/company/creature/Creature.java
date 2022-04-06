@@ -1,6 +1,6 @@
 package com.company.creature;
 
-import com.company.creature.skill.Skill;
+import com.company.spell.Spell;
 import com.company.creature.stat.*;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public abstract class Creature {
     protected Damage damage;
     protected Armor armor;
     protected Mana mana;
-    protected List<Skill> skills;
+    protected List<Spell> spells;
     protected boolean canRevive = false;
 
     // Constructors
@@ -52,31 +52,28 @@ public abstract class Creature {
     }
 
     public void useSkill(int skillIndex, Creature target) {
-        if (skillIndex >= 0 && skillIndex < skills.size()) {
-            Skill skill = skills.get(skillIndex);
-            skill.useSkill(this, target);
+        if (skillIndex >= 0 && skillIndex < spells.size()) {
+            Spell spell = spells.get(skillIndex);
+            spell.useSkill(this, target);
+            spells.remove(spell);
         }
     }
 
     // Skills
-    public List<Skill> getSkills() {
-        return skills;
+    public List<Spell> getSkills() {
+        return spells;
     }
 
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
+    public void setSkills(List<Spell> spells) {
+        this.spells = spells;
     }
 
-    public void addSkill(Skill   skill) {
-        skills.add(skill);
+    public void addSkill(Spell spell) {
+        spells.add(spell);
     }
 
-    public void removeSkill(Skill skill) {
-        skills.remove(skill);
-    }
-
-    public Skill getSkill(int index) {
-        return skills.get(index);
+    public Spell getSkill(int index) {
+        return spells.get(index);
     }
 
     // Getters and setters

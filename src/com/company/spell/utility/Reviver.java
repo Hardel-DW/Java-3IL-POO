@@ -1,9 +1,9 @@
-package com.company.creature.skill.utility;
+package com.company.spell.utility;
 
 import com.company.creature.Creature;
-import com.company.creature.skill.Skill;
+import com.company.spell.Spell;
 
-public class Reviver extends Skill {
+public class Reviver extends Spell {
 
     public Reviver(String name, int cost) {
         super("Reviver", 55);

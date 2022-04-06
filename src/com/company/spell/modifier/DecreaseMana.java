@@ -1,10 +1,10 @@
-package com.company.creature.skill.modifier;
+package com.company.spell.modifier;
 
 import com.company.creature.Creature;
-import com.company.creature.skill.Skill;
+import com.company.spell.Spell;
 import com.company.creature.stat.Properties;
 
-public class DecreaseMana extends Skill {
+public class DecreaseMana extends Spell {
     public DecreaseMana(String name) {
         super("Decrease Mana", 20);
     }
